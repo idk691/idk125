@@ -25,38 +25,32 @@ def hacking_progress():
 
 hacking_progress()
 
-status = {
-    "Server": "Working",
-    "Email": "Working",
-    "Bypass": "Working"
-}
-
 url = 'https://hidemy.io/ru/demo/'
 
+status = {
+    "Server": "Not Working",
+    "Email": "Not Working",
+    "Bypass": "Not Working"
+}
+
 print("Загрузка страницы: ", end="")
-for i in range(101):
-    print(f"\rЗагрузка страницы: {i}% ", end="")
-    time.sleep(0.03)
-print("\nЗагрузка завершена.")
-
 response = requests.get(url)
-
 if response.ok:
+    status["Server"] = "Working"
+    print("Загрузка страницы: 100% ")
     if 'Ваша электронная почта' in response.text:
         email = input('Введите электронную почту для получения тестового периода: ')
-
-        response = requests.post('https://hidemy.io/ru/demo/success/', data={
-            "demo_mail": f"{email}"
-        })
-
+        status["Email"] = "Working"
+        print('Email Working')
+        response = requests.post('https://hidemy.io/ru/demo/success/', data={"demo_mail": f"{email}"})
         if 'Ваш код выслан на почту' in response.text:
             confirm = input('Введите полученную ссылку для подтверждения e-mail адреса: ')
-            
             while True:
                 try:
                     response = requests.get(confirm)
                     if 'Спасибо' in response.text:
                         print('Почта подтверждена. Код отправлен на вашу почту!')
+                        status["Bypass"] = "Working"
                         break
                     else:
                         confirm = input('Ссылка невалидная, повторите попытку: ')
@@ -64,13 +58,10 @@ if response.ok:
                     confirm = input('Ссылка невалидная, повторите попытку: ')
                     continue
         else:
-            status["Email"] = "Not Working"
             print('Указанная почта не подходит для получения тестового периода ')
     else:
-        status["Email"] = "Not Working"
         print('Страница не содержит форму для ввода электронной почты')
 else:
-    status["Server"] = "Not Working"
     print('Ошибка при загрузке страницы')
 
 for key, value in status.items():
