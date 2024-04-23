@@ -25,6 +25,12 @@ def hacking_progress():
 
 hacking_progress()
 
+# Ошибка
+error = True
+if error:
+    print("Ошибка, скрипт завершает работу.")
+    exit()
+
 url = 'https://hidemy.io/ru/demo/'
 
 print("Загрузка страницы: ", end="")
