@@ -2,19 +2,20 @@ import time
 import random
 
 def hacking_progress():
-    print("Hacking in progress:")
+    print("VPN connection in progress:")
     start_time = time.time()
     error_percentage = random.randint(20, 80)
     for i in range(101):
         if i >= 100:
-            i = 99
+            i = 100
         print(f"Progress: {i}% ", end="", flush=True)
-        remaining_time = 3 - (time.time() - start_time)
-        time.sleep(remaining_time / (100 - i) if i < 100 else 0)
+        remaining_time = 10 - (time.time() - start_time)
+        if remaining_time > 0:
+            time.sleep(remaining_time / (100 - i))
         if i == error_percentage:
             print("\nError: Connection lost. Reconnecting...")
             time.sleep(2)
-            print("Reconnected. Resuming hacking...")
+            print("Reconnected. Resuming connection...")
         elif i < 30:
             print("[||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||]", end="\r", flush=True)
         elif i < 70:
@@ -25,6 +26,6 @@ def hacking_progress():
             print("[||||||||||||||||||||||||||||||||||||                            ]", end="\r", flush=True)
         else:
             print("[||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||]", end="\r", flush=True)
-    print("\nHack successful!")
+    print("\nVPN connection successful!")
 
 hacking_progress()
