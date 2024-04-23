@@ -4,7 +4,6 @@ import random
 def hacking_progress():
     print("VPN connection in progress:")
     start_time = time.time()
-    error_percentage = random.randint(20, 80)
     for i in range(101):
         if i >= 100:
             i = 100
@@ -12,7 +11,7 @@ def hacking_progress():
         remaining_time = 10 - (time.time() - start_time)
         if remaining_time > 0:
             time.sleep(remaining_time / (100 - i))
-        if i == error_percentage:
+        if random.randint(1, 100) <= 20:
             print("\nError: Connection lost. Reconnecting...")
             time.sleep(2)
             print("Reconnected. Resuming connection...")
