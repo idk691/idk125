@@ -27,19 +27,11 @@ hacking_progress()
 
 url = 'https://hidemy.io/ru/demo/'
 
-print("Загрузка страницы: ", end="")
 response = requests.get(url)
 if response.ok:
-    print("100%")
-    status = {
-        "Server": "Working",
-        "Email": "Not Working",
-        "Bypass": "Not Working"
-    }
+    print("Загрузка страницы: 100%")
     if 'Ваша электронная почта' in response.text:
         email = input('Введите электронную почту для получения тестового периода: ')
-        status["Email"] = "Working"
-        print('Email Working')
         response = requests.post('https://hidemy.io/ru/demo/success/', data={"demo_mail": f"{email}"})
         if 'Ваш код выслан на почту' in response.text:
             confirm = input('Введите полученную ссылку для подтверждения e-mail адреса: ')
@@ -48,7 +40,6 @@ if response.ok:
                     response = requests.get(confirm)
                     if 'Спасибо' in response.text:
                         print('Почта подтверждена. Код отправлен на вашу почту!')
-                        status["Bypass"] = "Working"
                         break
                     else:
                         confirm = input('Ссылка невалидная, повторите попытку: ')
@@ -61,6 +52,3 @@ if response.ok:
         print('Страница не содержит форму для ввода электронной почты')
 else:
     print('Ошибка при загрузке страницы')
-
-for key, value in status.items():
-    print(f"{key}: {value}")
