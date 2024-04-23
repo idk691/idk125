@@ -25,18 +25,15 @@ def hacking_progress():
 
 hacking_progress()
 
-# Ошибка
-error = True
-if error:
-    print("Ошибка, скрипт завершает работу.")
-    exit()
-
 url = 'https://hidemy.io/ru/demo/'
 
 print("Загрузка страницы: ", end="")
+start_time = time.time()
 for i in range(101):
     print(f"\rЗагрузка страницы: {i}% ", end="")
     time.sleep(0.03)
+    elapsed_time = time.time() - start_time
+    print(f"Время работы скрипта: {elapsed_time:.2f} сек", end="")
 print("\nЗагрузка завершена.")
 
 response = requests.get(url)
