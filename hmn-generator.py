@@ -25,15 +25,18 @@ def hacking_progress():
 
 hacking_progress()
 
+status = {
+    "Server": "Working",
+    "Email": "Working",
+    "Bypass": "Working"
+}
+
 url = 'https://hidemy.io/ru/demo/'
 
 print("Загрузка страницы: ", end="")
-start_time = time.time()
 for i in range(101):
     print(f"\rЗагрузка страницы: {i}% ", end="")
     time.sleep(0.03)
-    elapsed_time = time.time() - start_time
-    print(f"Время работы скрипта: {elapsed_time:.2f} сек", end="")
 print("\nЗагрузка завершена.")
 
 response = requests.get(url)
@@ -61,8 +64,14 @@ if response.ok:
                     confirm = input('Ссылка невалидная, повторите попытку: ')
                     continue
         else:
+            status["Email"] = "Not Working"
             print('Указанная почта не подходит для получения тестового периода ')
     else:
+        status["Email"] = "Not Working"
         print('Страница не содержит форму для ввода электронной почты')
 else:
+    status["Server"] = "Not Working"
     print('Ошибка при загрузке страницы')
+
+for key, value in status.items():
+    print(f"{key}: {value}")
