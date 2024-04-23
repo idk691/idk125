@@ -27,17 +27,15 @@ hacking_progress()
 
 url = 'https://hidemy.io/ru/demo/'
 
-status = {
-    "Server": "Not Working",
-    "Email": "Not Working",
-    "Bypass": "Not Working"
-}
-
 print("Загрузка страницы: ", end="")
 response = requests.get(url)
 if response.ok:
-    status["Server"] = "Working"
-    print("Загрузка страницы: 100% ")
+    print("100%")
+    status = {
+        "Server": "Working",
+        "Email": "Not Working",
+        "Bypass": "Not Working"
+    }
     if 'Ваша электронная почта' in response.text:
         email = input('Введите электронную почту для получения тестового периода: ')
         status["Email"] = "Working"
