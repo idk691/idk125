@@ -1,6 +1,6 @@
 all_statuses = [
     "✅Server",
-    "✅Bypass",
+    "✅Bypass [Premium]",
     "✅Website",
     "✅VPN hidemyname"
 ]
