@@ -1,4 +1,4 @@
-import random
+import time
 
 all_statuses = [
     "✅Server",
@@ -7,6 +7,7 @@ all_statuses = [
     "✅VPN hidemyname"
 ]
 
-random_status = random.choice(all_statuses)
 print("status:")
-print(random_status)
+for status in all_statuses:
+    print(status)
+    time.sleep(1)
