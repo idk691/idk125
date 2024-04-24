@@ -1,5 +1,3 @@
-import time
-
 all_statuses = [
     "✅Server",
     "✅Bypass",
@@ -8,6 +6,4 @@ all_statuses = [
 ]
 
 print("status:")
-for status in all_statuses:
-    print(status)
-    time.sleep(1)
+print(*all_statuses, sep='\n')
