@@ -30,20 +30,9 @@ if response.ok:
     print("Загрузка страницы: 100%")
     if 'Ваша электронная почта' in response.text:
         email = input('Введите электронную почту для получения тестового периода: ')
-        response = requests.post('https://hidemy.io/ru/demo/success/', data={"demo_mail": f"{email}"}, timeout=1)  # Установите время ожидания запроса на 1 секунду
+        response = requests.post('https://hidemy.io/ru/demo/success/', data={"demo_mail": f"{email}"}, timeout=1)
         if 'Ваш код выслан на почту' in response.text:
-            confirm = input('Введите полученную ссылку для подтверждения e-mail адреса: ')
-            while True:
-                try:
-                    response = requests.get(confirm, timeout=1)  # Установите время ожидания запроса на 1 секунду
-                    if 'Спасибо' in response.text:
-                        print('Почта подтверждена. Код отправлен на вашу почту!')
-                        break
-                    else:
-                        confirm = input('Ссылка невалидная, повторите попытку: ')
-                except:
-                    confirm = input('Ссылка невалидная, повторите попытку: ')
-                    continue
+            print('Почта подтверждена. Код отправлен на вашу почту!')
         else:
             print('Указанная почта не подходит для получения тестового периода ')
     else:
