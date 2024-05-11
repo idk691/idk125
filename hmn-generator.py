@@ -2,17 +2,17 @@ import requests
 import random
 import string
 
-# Генерация случайного fake ID
+# Генерация рандомного ID
 fake_id = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
-print("Fake ID:", fake_id)
+print(f"Рандомное ID: [{fake_id}]")
 
-url = f'https://hidemy.io/ru/demo/'
+url = 'https://hidemy.io/ru/demo/'
 
 if 'Ваша электронная почта' in requests.get(url).text:
     
     email = input('Введите электронную почту для получения тестового периода: ')
 
-    response = requests.post(f'https://hidemy.io/ru/demo/success/', data={
+    response = requests.post('https://hidemy.io/ru/demo/success/', data={
         "demo_mail": f"{email}"
     })
 
