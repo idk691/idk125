@@ -1,10 +1,4 @@
 import requests
-import random
-import string
-
-# Генерация рандомного ID
-fake_id = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
-print(f"Рандомное ID: [{fake_id}]")
 
 url = 'https://hidemy.io/ru/demo/'
 
