@@ -2,8 +2,9 @@ import requests
 import random
 import string
 
-# Генерация фейкового ID
+# Генерация случайного fake ID
 fake_id = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+print("Fake ID:", fake_id)
 
 url = f'https://hidemy.io/ru/demo/{fake_id}/'
 
